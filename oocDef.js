@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
         lineComment: '//',
         blockCommentStart: '/*',
         blockCommentEnd: '*/',
-        autoClosingPairs: [['{', '}'], ['[', ']'], ['(', ')'], ['"', '"'], ["'", "'"], ["<", ">"]],
+        autoClosingPairs: [['{', '}'], ['[', ']'], ['(', ')'], ['"', '"'], ["'", "'"]],
         keywords: [
             '__onheap__',
             'this',
