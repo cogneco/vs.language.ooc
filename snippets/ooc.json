@@ -44,8 +44,9 @@
 	"Create for-loop": {
 		"prefix": "for",
 		"body": [
-			"for (${1: counter} in ${2: min} .. ${3: max})$4",
-			"	$5"
+			"for (${1: counter} in ${2: min} .. ${3: max}) {",
+			"	$5",
+			"}"
 		],
 		"description": "Creates a class with init and free functions."
 	},
