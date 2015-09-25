@@ -1,0 +1,52 @@
+{
+	/*
+		class, cover and func
+	*/
+	"Create class": {
+		"prefix": "class",
+		"body": [
+			"${1: name}: class$2 {",
+			"	init: func",
+			"	free: func {",
+			"		// TODO: Cleanup",
+			"		super()",
+			"	}",
+			"	$3",
+			"}"
+		],
+		"description": "Creates a class with init and free functions."
+	},
+	"Create cover": {
+		"prefix": "cover",
+		"body": [
+			"${1: name}: cover$2 {",
+			"	init: func@",
+			"	free: func@ {",
+			"		// TODO: Cleanup",
+			"	}",
+			"	$3",
+			"}"
+		],
+		"description": "Creates a cover with init and free functions."
+	},
+	"Create func": {
+		"prefix": "func",
+		"body": [
+			"${1: name}: func (${2: arguments}) -> ${3: type} {",
+			"	$4",
+			"}"
+		],
+		"description": "Creates a class with init and free functions."
+	},
+	/*
+		loops
+	*/
+	"Create for-loop": {
+		"prefix": "for",
+		"body": [
+			"for (${1: counter} in ${2: min} .. ${3: max})$4",
+			"	$5"
+		],
+		"description": "Creates a class with init and free functions."
+	},
+}
