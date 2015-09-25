@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
         lineComment: '//',
         blockCommentStart: '/*',
         blockCommentEnd: '*/',
-        autoClosingPairs: [['{', '}'], ['[', ']'], ['(', ')'], ['"', '"']],
+        autoClosingPairs: [['{', '}'], ['[', ']'], ['(', ')'], ['"', '"'], ["'", "'"], ["<", ">"]],
         keywords: [
             '__onheap__',
             'this',
@@ -58,11 +58,7 @@ define(["require", "exports"], function (require, exports) {
             'false',
             'null',
             'new',
-            'Float',
-            'Int',
-            'Double',
-            'String',
-            'Bool'
+            'version'
         ],
         operators: [
             '+',
@@ -107,9 +103,6 @@ define(["require", "exports"], function (require, exports) {
             '..',
             '->'
         ],
-        types: [
-            'Quaternion'
-        ],
         // we include these common regular expressions
         symbols: /[=><!~?:&|+\-*\/\^%]+/,
         escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
@@ -119,26 +112,28 @@ define(["require", "exports"], function (require, exports) {
         tokenizer: {
             root: [
                 [/[A-Z]+\w*/, 'type.$0'],
-                //[/[a-zA-Z]+\w*\(/, 'type.$0'],
                 [/[a-zA-Z_]\w*/, { cases: { '@keywords': { token: 'keyword.$0' }, '@default': 'identifier' } }],
                 { include: '@whitespace' },
                 [/^\s*#\w+/, 'keyword'],
                 [/[{}()\[\]]/, '@brackets'],
                 [/[<>](?!@symbols)/, '@brackets'],
                 [/@symbols/, { cases: { '@operators': 'delimiter', '@default': '' } }],
-                [/\d*\d+[eE]([\-+]?\d+)?(@floatsuffix)/, 'number.float'],
-                [/\d*\.\d+([eE][\-+]?\d+)?(@floatsuffix)/, 'number.float'],
-                [/0[xX][0-9a-fA-F']*[0-9a-fA-F](@integersuffix)/, 'number.hex'],
-                [/0[0-7']*[0-7](@integersuffix)/, 'number.octal'],
-                [/0[bB][0-1']*[0-1](@integersuffix)/, 'number.binary'],
-                [/\d[\d']*\d(@integersuffix)/, 'number'],
+                [/[\d*\_]*[\.]?\d+([eE][\-+]?\d+)+[\_+\d]*(@floatsuffix)/, 'number.float'],
+                [/0[x][\da-fA-F\_]*[\da-fA-F](@integersuffix)/, 'number.hex'],
+                [/0[c][0-7]*[0-7](@integersuffix)/, 'number.octal'],
+                [/0[b][0-1\_]*[0-1](@integersuffix)/, 'number.binary'],
+                [/([\d\-\_]+)/, 'number'],
                 [/\d(@integersuffix)/, 'number'],
                 [/[;,.]/, 'delimiter'],
                 [/"([^"\\]|\\.)*$/, 'string.invalid'],
-                [/"/, 'string', '@string'],
+                [/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
                 [/'[^\\']'/, 'string'],
-                [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
-                [/'/, 'string.invalid']
+                [/(')(@escapes)(')/, ['string', 'annotation', 'string']],
+                [/'/, 'string.invalid'],
+            ],
+            todo: [
+                [/TODO/, 'annotation'],
+                [/HACK/, 'annotation']
             ],
             whitespace: [
                 [/[ \t\r\n]+/, ''],
@@ -148,11 +143,9 @@ define(["require", "exports"], function (require, exports) {
             ],
             comment: [
                 [/[^\/*]+/, 'comment'],
-                [/\/\*/, 'comment.invalid'],
-                [/\*\//, 'comment', '@pop'],
+                ['\\*/', 'comment', '@pop'],
                 [/[\/*]/, 'comment']
             ],
-            //Identical copy of comment above, except for the addition of .doc
             doccomment: [
                 [/[^\/*]+/, 'comment.doc'],
                 [/\/\*/, 'comment.doc.invalid'],
@@ -161,9 +154,9 @@ define(["require", "exports"], function (require, exports) {
             ],
             string: [
                 [/[^\\"]+/, 'string'],
-                [/@escapes/, 'string.escape'],
+                [/@escapes/, 'annotation'],
                 [/\\./, 'string.escape.invalid'],
-                [/"/, 'string', '@pop']
+                [/"/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
             ],
         },
     };
