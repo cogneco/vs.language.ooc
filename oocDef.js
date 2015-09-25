@@ -50,12 +50,8 @@ define(["require", "exports"], function (require, exports) {
                 [/"([^"\\]|\\.)*$/, 'string.invalid'],
                 [/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
                 [/'[^\\']'/, 'string'],
-                [/(')(@escapes)(')/, ['string', 'annotation', 'string']],
+                [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
                 [/'/, 'string.invalid'],
-            ],
-            todo: [
-                [/TODO/, 'annotation'],
-                [/HACK/, 'annotation']
             ],
             whitespace: [
                 [/[ \t\r\n]+/, ''],
@@ -76,7 +72,7 @@ define(["require", "exports"], function (require, exports) {
             ],
             string: [
                 [/[^\\"]+/, 'string'],
-                [/@escapes/, 'annotation'],
+                [/@escapes/, 'string.escape'],
                 [/\\./, 'string.escape.invalid'],
                 [/"/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
             ],
