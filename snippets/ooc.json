@@ -1,0 +1,111 @@
+{
+	"Create class": {
+		"prefix": "class",
+		"body": [
+			"${1: name}: class$2 {",
+			"	init: func",
+			"	free: override func {",
+			"		// TODO: Cleanup",
+			"		super()",
+			"	}",
+			"	$4",
+			"}",
+			""
+		],
+		"description": "Creates a class with init and free functions."
+	},
+	"Create cover": {
+		"prefix": "cover",
+		"body": [
+			"${1: name}: cover$2 {",
+			"	init: func@",
+			"	free: func@ {",
+			"		// TODO: Cleanup",
+			"	}",
+			"	$3",
+			"}",
+			""
+		],
+		"description": "Creates a cover with init and free functions."
+	},
+	"Create enum": {
+		"prefix": "enum",
+		"body": [
+			"${1: name}: enum {",
+			"	$2",
+			"}",
+			""
+		],
+		"description": "Creates an enum."
+	},
+	"Create match": {
+		"prefix": "match",
+		"body": [
+			"match (${1: value}) {",
+			"	case ${2: first} => $3",
+			"	case ${4: second} => $5",
+			"	case ${6: third} => $7",
+			"	case => $8",
+			"}"
+		],
+		"description": "Creates a match block."
+	},
+	"Create try-catch": {
+		"prefix": "try-catch",
+		"body": [
+			"try {",
+			"	$1",
+			"} catch ($2) {",
+			"	$3",
+			"}"
+		],
+		"description": "Creates a try-catch block."
+	},
+	"Create func": {
+		"prefix": "func",
+		"body": [
+			"${1: name}: func (${2: arguments}) -> ${3: type} {",
+			"	$4",
+			"}"
+		],
+		"description": "Creates a func."
+	},
+	"Create for-loop": {
+		"prefix": "for",
+		"body": [
+			"for (${1: counter} in ${2: min} .. ${3: max}) {",
+			"	$5",
+			"}"
+		],
+		"description": "Creates a for-loop"
+	},
+	"Create while-loop": {
+		"prefix": "while",
+		"body": [
+			"while (${1: condition}) {",
+			"	$5",
+			"}"
+		],
+		"description": "Creates a while-loop."
+	},
+	"Create version block": {
+		"prefix": "version",
+		"body": [
+			"version (${1: flags}) {",
+			"	$2",
+			"}"
+		],
+		"description": "Creates a version block."
+	},
+	"Create if-else block": {
+		"prefix": "if-else",
+		"body": [
+			"if (${1: condition}) {",
+			"	$2",
+			"} else {",
+			"	$3",
+			"}"
+		],
+		"description": "Creates an if-else block."
+	}
+}
