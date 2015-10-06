@@ -42,7 +42,7 @@ define(["require", "exports"], function (require, exports) {
                 [/@symbols/, { cases: { '@operators': 'delimiter', '@default': '' } }],
                 [/[\d*\_]*[\.]?\d+([eE][\-+]?\d+)+[\_+\d]*(@floatsuffix)/, 'number.float'],
                 [/0[x][\da-fA-F\_]*[\da-fA-F](@integersuffix)/, 'number.hex'],
-                [/0[c][0-7]*[0-7](@integersuffix)/, 'number.hex'],
+                [/0[c][0-7\_]*[0-7](@integersuffix)/, 'number.hex'],
                 [/0[b][0-1\_]*[0-1](@integersuffix)/, 'number.hex'],
                 [/([\d\-\_]+)/, 'number'],
                 [/\d(@integersuffix)/, 'number'],
