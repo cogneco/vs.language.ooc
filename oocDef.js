@@ -17,7 +17,7 @@ define(["require", "exports"], function (require, exports) {
             'inline', 'extends', 'extern', 'unmangled', 'implements', 'implicit',
             'import', 'include', 'use', 'if', 'else', 'for', 'while', 'match',
             'case', 'as', 'in', 'into', 'proto', 'try', 'catch', 'set', 'get',
-            'operator', 'const', 'true', 'false', 'null', 'new', 'version'
+            'operator', 'const', 'true', 'false', 'null', 'new', 'version', 'extend'
         ],
         operators: [
             '+', '+=', '=', '&', '&=', '|', '|=', '^', '^=', '<==>', ':=',
