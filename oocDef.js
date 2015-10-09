@@ -47,11 +47,10 @@ define(["require", "exports"], function (require, exports) {
                 [/([\d\-\_]+)/, 'number'],
                 [/\d(@integersuffix)/, 'number'],
                 [/[;,.]/, 'delimiter'],
-                [/"([^"\\]|\\.)*$/, 'string.invalid'],
                 [/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
                 [/'[^\\']'/, 'string'],
                 [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
-                [/'/, 'string.invalid'],
+                [/'/, 'string.invalid']
             ],
             whitespace: [
                 [/[ \t\r\n]+/, ''],
