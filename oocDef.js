@@ -33,7 +33,8 @@ define(["require", "exports"], function (require, exports) {
         // The main tokenizer for our languages
         tokenizer: {
             root: [
-                [/[A-Z]+\w*/, 'type.$0'],
+                [/[\_a-zA-Z]+\:/, 'identifier'],
+                [/[\_A-Z]+\w*/, 'type.$0'],
                 [/[a-zA-Z_]\w*/, { cases: { '@keywords': { token: 'keyword.$0' }, '@default': 'identifier' } }],
                 { include: '@whitespace' },
                 [/^\s*#\w+/, 'keyword'],
@@ -50,7 +51,7 @@ define(["require", "exports"], function (require, exports) {
                 [/"/, { token: 'string.quote', bracket: '@open', next: '@string' }],
                 [/'[^\\']'/, 'string'],
                 [/(')(@escapes)(')/, ['string', 'string.escape', 'string']],
-                [/'/, 'string.invalid']
+                [/'/, 'string.invalid'],
             ],
             whitespace: [
                 [/[ \t\r\n]+/, ''],
