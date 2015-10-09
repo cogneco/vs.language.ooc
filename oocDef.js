@@ -34,7 +34,7 @@ define(["require", "exports"], function (require, exports) {
         tokenizer: {
             root: [
                 [/[\_a-zA-Z]+\:/, 'identifier'],
-                [/[A-Z]+\w*/, 'type.$0'],
+                [/[\_A-Z]+\w*/, 'type.$0'],
                 [/[a-zA-Z_]\w*/, { cases: { '@keywords': { token: 'keyword.$0' }, '@default': 'identifier' } }],
                 { include: '@whitespace' },
                 [/^\s*#\w+/, 'keyword'],
