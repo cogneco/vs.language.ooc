@@ -2,7 +2,7 @@
 Adds ooc support to Visual Studio Code
 
 ## Requirements
-* [Visual Studio Code, v0.8.0](https://code.visualstudio.com/Download)
+* [Visual Studio Code, v0.9.1](https://code.visualstudio.com/Download)
 
 ## Install on Linux
 Open up a terminal, then follow the steps outlined below.
@@ -17,8 +17,8 @@ Let's assume that you have VS Code installed at ```/opt/vscode/```
 and that the location of  ```vs.language.ooc```
 is ```~/versioned/vs.language.ooc```
 
-* ```cd /opt/vscode/resources/app/plugins```
-* ```sudo ln -s ~/versioned/vs.language.ooc/ .```
+* ```cd /opt/vscode/resources/app/extensions```
+* ```sudo ln -s ~/versioned/vs.language.ooc/ ooc```
 
 If you installed VS Code to a location that is not in your PATH variable (which is probably the case if you installed it to the path specified above),
 you can either add that location to your PATH variable, or better, create a link to VS Code in one of the standard system directories.
