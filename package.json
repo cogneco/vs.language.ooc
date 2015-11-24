@@ -2,21 +2,28 @@
 	"name": "ooc",
 	"version": "0.1.0",
 	"publisher": "vscode",
-	"engines": { "vscode": "*" },
-	"activationEvents": ["onLanguage:ooc"],
-	"main": "./out/oocMain",
+	"engines": {
+		"vscode": "*"
+	},
 	"contributes": {
-		"languages": [{
-			"id": "ooc",
-			"extensions": [ ".ooc" ],
-			"aliases": [ "ooc" ]
-		}]
-	},
-	"isAMD": true,
-	"scripts": {
-		"vscode:prepublish": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../../gulpfile.plugins.js compile-plugin:csharp"
-	},
-	"_bundling": [
-		{ "name": "./out/oocMain" }
-	]
+		"languages": [
+			{
+				"id": "ooc",
+				"extensions": [
+					".ooc"
+				],
+				"aliases": [
+					"ooc"
+				],
+				"configuration": "./ooc.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ooc",
+				"scopeName": "source.ooc",
+				"path": "./syntaxes/ooc.json"
+			}
+		]
+	}
 }

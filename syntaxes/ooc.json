@@ -1,0 +1,135 @@
+{
+	"scopeName": "source.ooc",
+	"name": "ooc",
+	"comment": "ooc language",
+	"firstLineMatch": "^#!\\s*/.*\\booc",
+	"fileTypes": [
+		"ooc"
+	],
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#keyword"
+		},
+		{
+			"include": "#function"
+		}
+	],
+	"repository": {
+		"keyword": {
+			"patterns": [
+				{
+					"include": "keyword-declaration"
+				}
+			]
+		},
+		"keyword-general": {
+			"name": "keyword.ooc",
+			"match": ""	
+		},
+		"keyword-declaration": {
+			"name": "keyword.declaration.ooc",
+			"match": "\\b(new|static|override|virtual|abstract|func|class|cover|enum|from)\\b"	
+		},
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.block.swift",
+					"begin": "/\\*",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.begin.ooc"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.end.ooc"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.ooc"
+						}
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"name": "comment.line.double-slash.ooc",
+							"begin": "//",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.ooc"
+								}
+							},
+							"end": "\\n",
+							"patterns": [
+								{
+									"name": "punctuation.separator.continuation.ooc",
+									"match": "(?>\\\\\\s*\\n)"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"function": {
+			"name": "meta.function.ooc",
+			"begin": "(\\w+)\\W?\\s*:\\s*((virtual|override|abstract|static|unmangled)?.*\\s*(func))",
+			"end": "(?=\\{|#)|;|$",
+			"beginCaptures": {
+				"1": {
+					"comment": "this is the function name",
+					"name": "entity.name.function.ooc"
+				},
+				"2": {
+					"comment": "this is the modifiers and func keyword (group 3 is the modifier, 4 is the func keyword)",
+					"name": "keyword.ooc"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "\\~([a-zA-Z_0-9]+)\\s*([\\(\\{])",
+					"beginCaptures": {
+						"1": {
+							"comment": "this is the overload identifier",
+							"name": "entity.name.function.ooc"
+						},
+						"2": {
+							"name": "punctuation.definition.parameters.begin.ooc"
+						}
+					},
+					"end": "([\\)\\}])",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.parameters.end.ooc"
+						}
+					}
+				},
+				{
+					"name": "meta.return-type.ooc",
+					"match": "((->)\\s*([^\\{]+))",
+					"captures": {
+						"2": {
+							"name": "punctuation.function.ooc"
+						},
+						"3": {
+							"name": "entity.name.type.class.ooc"
+						}
+					}
+				}
+			]
+		}
+	}
+}

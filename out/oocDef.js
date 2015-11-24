@@ -16,8 +16,8 @@ define(["require", "exports"], function (require, exports) {
             'enum', 'interface', 'from', 'abstract', 'final', 'static',
             'inline', 'extends', 'extern', 'unmangled', 'implements', 'implicit',
             'import', 'include', 'use', 'if', 'else', 'for', 'while', 'match',
-            'case', 'as', 'in', 'into', 'proto', 'try', 'catch', 'set', 'get',
-            'operator', 'const', 'true', 'false', 'null', 'new', 'version', 'extend'
+            'case', 'as', 'in', 'into', 'proto', 'try', 'catch',
+            'operator', 'const', 'true', 'false', 'null', 'new', 'extend'
         ],
         operators: [
             '+', '+=', '=', '&', '&=', '|', '|=', '^', '^=', '<==>', ':=',
@@ -33,9 +33,9 @@ define(["require", "exports"], function (require, exports) {
         // The main tokenizer for our languages
         tokenizer: {
             root: [
-                [/\_?[a-zA-Z]+\:/, 'identifier'],
+                [/(\_?[a-zA-Z]+\:\()/, 'identifier'],
                 [/\_?[A-Z]+\w*/, 'type.$0'],
-                [/[a-zA-Z\_]\w*/, { cases: { '@keywords': { token: 'keyword.$0' }, '@default': 'identifier' } }],
+                [/([a-zA-Z\_]\w*)((get|set)(\(([^\)]+)?\)\s?\{))/, { cases: { '@keywords': { token: 'keyword.$0' }, '@default': 'identifier' } }],
                 { include: '@whitespace' },
                 [/^\s*#\w+/, 'keyword'],
                 [/[{}()\[\]]/, '@brackets'],
