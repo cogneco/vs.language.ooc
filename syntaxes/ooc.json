@@ -55,7 +55,7 @@
 		},
 		"keyword-control": {
 			"name": "keyword.control.ooc",
-			"match": "\\b(if|else|match|case|for|while|try|catch|break|continue)\\b"
+			"match": "\\b(if|else|match|case|for|while|try|catch|break|continue|return)\\b"
 		},
 		"keyword-operator": {
 			"name": "keyword.operator.ooc",
