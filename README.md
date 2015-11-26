@@ -2,7 +2,7 @@
 Adds ooc support to Visual Studio Code
 
 ## Requirements
-* [Visual Studio Code, v0.9.1](https://code.visualstudio.com/Download)
+* [Visual Studio Code, >= v0.10.1](https://code.visualstudio.com/Download)
 
 ## Install on Linux
 Open up a terminal, then follow the steps outlined below.

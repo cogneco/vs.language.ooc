@@ -1,0 +1,234 @@
+{
+	"scopeName": "source.ooc",
+	"name": "ooc",
+	"comment": "ooc language",
+	"fileTypes": [
+		"ooc"
+	],
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#keyword"
+		},
+		{
+			"include": "#language-constant"
+		},
+		{
+			"include": "#language-variable"
+		},
+		{
+			"include": "#literal"
+		},
+		{
+			"include": "#builtin-function"
+		},
+		{
+			"include": "#identifier"
+		}
+	],
+	"repository": {
+		"identifier": {
+			"name": "text.ooc",
+			"match": "\\b(\\w+\\d*)\\b"
+		},
+		"keyword": {
+			"patterns": [
+				{
+					"include": "#keyword-declaration"
+				},
+				{
+					"include": "#keyword-operator"
+				},
+				{
+					"include": "#keyword-control"
+				},
+				{
+					"include": "#keyword-other"
+				}
+			]
+		},
+		"keyword-declaration": {
+			"name": "keyword.declaration.ooc",
+			"match": "\\b(static|override|virtual|abstract|func|class|cover|enum|from|final|extend|extends|const|implements|extern|unmangled|inline|__onheap__)\\b"
+		},
+		"keyword-control": {
+			"name": "keyword.control.ooc",
+			"match": "\\b(if|else|match|case|for|while|try|catch|break|continue)\\b"
+		},
+		"keyword-operator": {
+			"name": "keyword.operator.ooc",
+			"match": "\\b(new|as|is|in)\\b"
+		},
+		"keyword-other": {
+			"name": "keyword.other.ooc",
+			"match": "\\b(get|set|use|import|include|proto|into)\\b"
+		},
+		"builtin-function": {
+			"name": "support.function.builtin.ooc",
+			"match": "\\b(version|raise|throw|super)\\b"
+		},
+		"language-constant": {
+			"name": "constant.language.ooc",
+			"match": "\\b(true|false|null|This)\\b"
+		},
+		"language-variable": {
+			"name": "language.variable.ooc",
+			"match": "\\b(this)\\b"
+		},
+		"literal": {
+			"patterns": [
+				{
+					"include": "#literal-number"
+				},
+				{
+					"include": "#literal-string"
+				},
+				{
+					"include": "#literal-character"
+				}
+			]
+		},
+		"literal-number": {
+			"name": "constant.numeric.ooc",
+			"match": "(?x) (?### INTEGER ###) (?<integer-literal>                 \\g<binary-literal> |                                 \\g<octal-literal> |                                 \\g<hexadecimal-literal> |                                 \\g<decimal-literal> ){0} (?### BINARY ###) (?<binary-literal>                  0b \\g<binary-digit> \\g<binary-literal-characters>? ){0} (?<binary-digit>                    [0-1] ){0} (?<binary-literal-character>        \\g<binary-digit> |                                 _ ){0} (?<binary-literal-characters>       \\g<binary-literal-character> \\g<binary-literal-characters>? ){0} (?### OCTAL ###) (?<octal-literal>                   0c \\g<octal-digit> \\g<octal-literal-characters>? ){0} (?<octal-digit>                     [0-7] ){0} (?<octal-literal-character>         \\g<octal-digit> |                                 _ ){0} (?<octal-literal-characters>        \\g<octal-literal-character> \\g<octal-literal-characters>? ){0} (?### DECIMAL ###) (?<decimal-literal>                 \\g<decimal-digit> \\g<decimal-literal-characters>? ){0} (?<decimal-digit>                   \\d ){0} (?<decimal-literal-character>       \\g<decimal-digit> |                                 _ ){0} (?<decimal-literal-characters>      \\g<decimal-literal-character> \\g<decimal-literal-characters>? ){0} (?### HEXADECIMAL ###) (?<hexadecimal-literal>             0x \\g<hexadecimal-digit> \\g<hexadecimal-literal-characters>? ){0} (?<hexadecimal-digit>               \\h ){0} (?<hexadecimal-literal-character>   \\g<hexadecimal-digit> |                                 _ ){0} (?<hexadecimal-literal-characters>  \\g<hexadecimal-literal-character> \\g<hexadecimal-literal-characters>? ){0} (?### FLOATING POINT ###) (?<floating-point-literal>          \\g<decimal-literal>     \\g<decimal-fraction>?     \\g<decimal-exponent>? |                                 \\g<hexadecimal-literal> \\g<hexadecimal-fraction>? \\g<hexadecimal-exponent> ){0} (?<decimal-fraction>                \\. \\g<decimal-literal> ){0} (?<decimal-exponent>                \\g<floating-point-e> \\g<sign>? \\g<decimal-literal> ){0} (?<hexadecimal-fraction>            \\. \\g<hexadecimal-literal>? ){0} (?<hexadecimal-exponent>            \\g<floating-point-p> \\g<sign>? \\g<hexadecimal-literal> ){0} (?<floating-point-e>                [eE] ){0} (?<floating-point-p>                [pP] ){0} (?<sign>                            [+-] ){0} (?!0[bcx]) \\g<floating-point-literal> |            \\g<integer-literal>"
+		},
+		"literal-string": {
+			"name": "string.quoted.double.ooc",
+			"begin": "\"",
+			"end": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.ooc"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.ooc"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#quoted-text"
+				}
+			]
+		},
+		"literal-character": {
+			"begin": "'",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.ooc"
+				}
+			},
+			"end": "'",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.ooc"
+				}
+			},
+			"name": "string.quoted.single.cs",
+			"patterns": [
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape.ooc"
+				}
+			]
+		},
+		"escaped-char": {
+			"patterns": [
+				{
+					"name": "constant.character.escape.ooc",
+					"match": "\\\\[0\\\\tnr\"']"
+				},
+				{
+					"name": "constant.character.escape.ooc",
+					"match": "\\\\(x\\h{2}|u\\h{4}|U\\h{8})"
+				},
+				{
+					"name": "invalid.illegal.constant.character.escape.ooc",
+					"match": "\\\\[^uxU]"
+				}
+			]
+		},
+		"quoted-text": {
+			"patterns": [
+				{
+					"name": "meta.embedded.line.ooc",
+					"contentName": "source.ooc",
+					"begin": "\\\\\\(",
+					"end": "\\)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.embedded.begin.ooc"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.embedded.end.ooc"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"include": "#escaped-char"
+				}
+			]
+		},
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.block.ooc",
+					"begin": "/\\*",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.begin.ooc"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.end.ooc"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.ooc"
+						}
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"name": "comment.line.double-slash.ooc",
+							"begin": "//",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.ooc"
+								}
+							},
+							"end": "\\n",
+							"patterns": [
+								{
+									"name": "punctuation.separator.continuation.ooc",
+									"match": "(?>\\\\\\s*\\n)"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}
