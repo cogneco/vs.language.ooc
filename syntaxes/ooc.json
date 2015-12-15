@@ -120,7 +120,7 @@
 		},
 		"builtin-function": {
 			"name": "support.function.builtin.ooc",
-			"match": "\\b(version|raise|throw|super)\\b"
+			"match": "\\b(version|raise|throw|super)\\b\\s*\\("
 		},
 		"language-constant": {
 			"name": "constant.language.ooc",
