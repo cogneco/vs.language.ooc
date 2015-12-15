@@ -1,7 +1,7 @@
 {
 	"name": "ooc",
 	"version": "0.1.0",
-	"publisher": "vscode",
+	"publisher": "Cogneco",
 	"engines": {
 		"vscode": "*"
 	},
