@@ -233,7 +233,7 @@
 			]
 		},
 		"todo": {
-			"name": "constant.language.ooc",
+			"name": "storage.type.annotation.ooc",
 			"match": "(TODO|FIXME)"
 		},
 		"comment": {
