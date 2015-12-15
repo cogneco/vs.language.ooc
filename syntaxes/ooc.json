@@ -7,13 +7,13 @@
 	],
 	"patterns": [
 		{
-			"include": "#ambiguous-keyword"
-		},
-		{
 			"include": "#comment"
 		},
 		{
 			"include": "#keyword"
+		},
+		{
+			"include": "#builtin-function"
 		},
 		{
 			"include": "#language-constant"
@@ -25,36 +25,38 @@
 			"include": "#literal"
 		},
 		{
-			"include": "#builtin-function"
+			"include": "#function"
 		},
 		{
-			"include": "#function"
+			"include": "#function-call"
+		},
+		{
+			"include": "#property"
 		},
 		{
 			"include": "#identifier"
 		}
 	],
 	"repository": {
-		"ambiguous-keyword": {
+		"function-call": {
+			"name": "text.ooc",
+			"match": "(\\w+)\\??\\s*\\("
+		},
+		"property": {
 			"patterns": [
 				{
-					"comment": "prevents certain keywords from being highlighted",
-					"match": "(get|set)\\s*[\\:\\(]",
-					"captures": {
-						"1": {
-							"name": "text.ooc"
-						}
-					}
+					"name": "keyword.other.ooc",
+					"match": "(get|set)"
 				}
 			]
 		},
 		"function": {
 			"patterns": [
 				{
-					"match": "([\\_a-z]+[\\w\\d]*)\\s?:\\s?([\\w\\s]*)(func)",
+					"match": "([\\_a-z]+[\\w\\d]*)\\??\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*(\\~(\\w*))?",
 					"captures": {
 						"1": {
-							"name": "entity.name.function"
+							"name": "entity.name.function.ooc"
 						},
 						"2": {
 							"patterns": [
@@ -69,6 +71,9 @@
 									"include": "#keyword"
 								}
 							]
+						},
+						"5": {
+							"name": "entity.name.function.ooc"
 						}
 					}
 				}
@@ -116,7 +121,7 @@
 		},
 		"keyword-other": {
 			"name": "keyword.other.ooc",
-			"match": "\\b(get|set|use|import|include|proto|into)\\b"
+			"match": "\\b(use|import|include|proto|into)\\b"
 		},
 		"builtin-function": {
 			"name": "support.function.builtin.ooc",
