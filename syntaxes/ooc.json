@@ -232,15 +232,12 @@
 				}
 			]
 		},
-		"todo":	{
+		"todo": {
 			"name": "constant.language.ooc",
 			"match": "(TODO|FIXME)"
 		},
 		"comment": {
 			"patterns": [
-				{
-					"include": "#todo"
-				},
 				{
 					"name": "comment.block.ooc",
 					"begin": "/\\*",
@@ -258,6 +255,9 @@
 					"patterns": [
 						{
 							"include": "#comment"
+						},
+						{
+							"include": "#todo"
 						}
 					]
 				},
