@@ -7,6 +7,9 @@
 	],
 	"patterns": [
 		{
+			"include": "#ambiguous-keyword"
+		},
+		{
 			"include": "#comment"
 		},
 		{
@@ -32,11 +35,21 @@
 		}
 	],
 	"repository": {
-		"function": {
+		"ambiguous-keyword": {
 			"patterns": [
 				{
-					"include": "#keyword"	
-				},
+					"comment": "prevents certain keywords from being highlighted",
+					"match": "(get|set)\\s*[\\:\\(]",
+					"captures": {
+						"1": {
+							"name": "text.ooc"
+						}
+					}
+				}
+			]
+		},
+		"function": {
+			"patterns": [
 				{
 					"match": "([\\_a-z]+[\\w\\d]*)\\s?:\\s?([\\w\\s]*)(func)",
 					"captures": {
@@ -46,18 +59,18 @@
 						"2": {
 							"patterns": [
 								{
-									"include": "#keyword"	
+									"include": "#keyword"
 								}
 							]
 						},
 						"3": {
 							"patterns": [
 								{
-									"include": "#keyword"	
+									"include": "#keyword"
 								}
 							]
 						}
-					}	
+					}
 				}
 			]
 		},
