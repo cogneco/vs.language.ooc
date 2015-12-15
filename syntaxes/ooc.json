@@ -232,8 +232,15 @@
 				}
 			]
 		},
+		"todo":	{
+			"name": "constant.language.ooc",
+			"match": "(TODO|FIXME)"
+		},
 		"comment": {
 			"patterns": [
+				{
+					"include": "#todo"
+				},
 				{
 					"name": "comment.block.ooc",
 					"begin": "/\\*",
@@ -276,6 +283,9 @@
 								{
 									"name": "punctuation.separator.continuation.ooc",
 									"match": "(?>\\\\\\s*\\n)"
+								},
+								{
+									"include": "#todo"
 								}
 							]
 						}
