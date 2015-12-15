@@ -30,8 +30,16 @@
 	],
 	"repository": {
 		"identifier": {
-			"name": "text.ooc",
-			"match": "\\b(\\w+\\d*)\\b"
+			"patterns": [
+				{
+					"name": "text.ooc",
+					"match": "\\b(\\_?[a-z]+\\w+\\d*)\\b"
+				},
+				{
+					"name": "storage.type.ooc",
+					"match": "\\b(\\_?[A-Z]+\\w+\\d*)\\b"
+				}
+			]
 		},
 		"keyword": {
 			"patterns": [
@@ -51,7 +59,7 @@
 		},
 		"keyword-declaration": {
 			"name": "keyword.declaration.ooc",
-			"match": "\\b(static|override|virtual|abstract|func|class|cover|enum|from|final|extend|extends|const|implements|extern|unmangled|inline|__onheap__)\\b"
+			"match": "\\b(static|override|virtual|abstract|func|class|cover|enum|template|from|final|extend|extends|const|implements|extern|unmangled|inline|__onheap__)\\b"
 		},
 		"keyword-control": {
 			"name": "keyword.control.ooc",
