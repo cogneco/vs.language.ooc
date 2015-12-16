@@ -10,6 +10,9 @@
 			"include": "#comment"
 		},
 		{
+			"include": "#function"
+		},
+		{
 			"include": "#keyword"
 		},
 		{
@@ -23,9 +26,6 @@
 		},
 		{
 			"include": "#literal"
-		},
-		{
-			"include": "#function"
 		},
 		{
 			"include": "#function-call"
@@ -62,6 +62,9 @@
 							"patterns": [
 								{
 									"include": "#keyword"
+								},
+								{
+									"include": "#identifier"
 								}
 							]
 						},
@@ -86,7 +89,7 @@
 					"match": "\\b(\\_?[a-z]+\\w+\\d*)\\b"
 				},
 				{
-					"name": "entity.name.class.ooc",
+					"name": "entity.name.type.class.ooc",
 					"match": "\\b(\\_?[A-Z]+\\w+\\d*)\\b"
 				}
 			]
