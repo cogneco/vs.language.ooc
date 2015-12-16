@@ -86,7 +86,7 @@
 					"match": "\\b(\\_?[a-z]+\\w+\\d*)\\b"
 				},
 				{
-					"name": "storage.type.ooc",
+					"name": "entity.name.class.ooc",
 					"match": "\\b(\\_?[A-Z]+\\w+\\d*)\\b"
 				}
 			]
