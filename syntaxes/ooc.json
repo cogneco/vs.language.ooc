@@ -122,7 +122,7 @@
 		},
 		"keyword-operator": {
 			"name": "keyword.operator.ooc",
-			"match": "\\b(new|as|is|in)\\b"
+			"match": "\\b(as|is|in)\\b"
 		},
 		"keyword-other": {
 			"name": "keyword.other.ooc",
