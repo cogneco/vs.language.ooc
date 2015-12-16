@@ -239,7 +239,7 @@
 		},
 		"todo": {
 			"name": "storage.type.annotation.ooc",
-			"match": "(TODO|FIXME)"
+			"match": "\\b(TODO|FIXME)\\b"
 		},
 		"comment": {
 			"patterns": [
