@@ -46,7 +46,7 @@
 			"patterns": [
 				{
 					"name": "keyword.other.ooc",
-					"match": "(get|set)"
+					"match": "\\b(get|set)\\b"
 				}
 			]
 		},
