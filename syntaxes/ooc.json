@@ -39,7 +39,6 @@
 	],
 	"repository": {
 		"function-call": {
-			"name": "text.ooc",
 			"match": "(\\w+)\\??\\s*\\("
 		},
 		"property": {
@@ -53,7 +52,7 @@
 		"function": {
 			"patterns": [
 				{
-					"match": "([\\_a-z]+[\\w\\d]*)\\??\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*(\\~(\\w*))?",
+					"match": "([\\_a-z]+[\\w\\d\\?]*)\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*(\\~(\\w*))?",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.ooc"
@@ -86,11 +85,11 @@
 			"patterns": [
 				{
 					"name": "text.ooc",
-					"match": "\\b(\\_?[a-z]+\\w+\\d*)\\b"
+					"match": "\\b(\\_*[a-z]+\\w+\\d*)\\b"
 				},
 				{
 					"name": "entity.name.type.class.ooc",
-					"match": "\\b(\\_?[A-Z]+\\w+\\d*)\\b"
+					"match": "\\b(\\_*[A-Z]+\\w*\\d*)\\b"
 				}
 			]
 		},
@@ -107,6 +106,9 @@
 				},
 				{
 					"include": "#keyword-other"
+				},
+				{
+					"include": "#keyword-primitive-datatype"
 				}
 			]
 		},
