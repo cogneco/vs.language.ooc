@@ -16,6 +16,12 @@
 			"include": "#keyword"
 		},
 		{
+			"include": "#language-storage-modifier"
+		},
+		{
+			"include": "#language-storage-self-reference"
+		},
+		{
 			"include": "#builtin-function"
 		},
 		{
@@ -61,6 +67,9 @@
 							"patterns": [
 								{
 									"include": "#keyword"
+								},
+								{
+									"include": "#language-storage-modifier"
 								},
 								{
 									"include": "#identifier"
@@ -114,7 +123,7 @@
 		},
 		"keyword-declaration": {
 			"name": "keyword.declaration.ooc",
-			"match": "\\b(static|override|virtual|abstract|operator|func|class|cover|enum|template|from|final|extend|extends|const|implements|extern|unmangled|inline|__onheap__)\\b"
+			"match": "\\b(operator|func|class|cover|enum|template|from|extend|extends|implements|__onheap__)\\b"
 		},
 		"keyword-control": {
 			"name": "keyword.control.ooc",
@@ -134,11 +143,19 @@
 		},
 		"language-constant": {
 			"name": "constant.language.ooc",
-			"match": "\\b(true|false|null|This)\\b"
+			"match": "\\b(true|false|null)\\b"
 		},
 		"language-variable": {
 			"name": "language.variable.ooc",
 			"match": "\\b(this)\\b"
+		},
+		"language-storage-modifier": {
+			"name": "storage.modifier.ooc",
+			"match": "\\b(static|abstract|virtual|override|unmangled|extern|final|const|inline)\\b"
+		},
+		"language-storage-self-reference": {
+			"name": "storage.type.other.ooc",
+			"match": "\\b(This)\\b"
 		},
 		"literal": {
 			"patterns": [
@@ -243,7 +260,7 @@
 			]
 		},
 		"todo": {
-			"name": "storage.type.annotation.ooc",
+			"name": "entity.name.tag.ooc",
 			"match": "\\b(TODO|FIXME)\\b"
 		},
 		"comment": {
