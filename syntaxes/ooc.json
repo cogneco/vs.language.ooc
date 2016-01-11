@@ -281,9 +281,6 @@
 					},
 					"patterns": [
 						{
-							"include": "#comment"
-						},
-						{
 							"include": "#todo"
 						}
 					]
