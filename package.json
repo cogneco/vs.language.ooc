@@ -1,7 +1,7 @@
 {
 	"name": "ooc",
 	"version": "0.1.0",
-	"publisher": "Cogneco",
+	"publisher": "magic-lang",
 	"engines": {
 		"vscode": "*"
 	},
