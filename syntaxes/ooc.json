@@ -58,7 +58,7 @@
 		"function": {
 			"patterns": [
 				{
-					"match": "([\\_a-z]+[\\w\\d\\?]*)\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*(\\~(\\w*))?",
+					"match": "([\\_a-z]+[\\w\\d\\?]*)\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*\\:(\\~(\\w*))?",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.ooc"
