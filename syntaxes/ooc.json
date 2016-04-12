@@ -1,321 +1,532 @@
 {
-	"scopeName": "source.ooc",
-	"name": "ooc",
-	"comment": "ooc language",
-	"fileTypes": [
-		"ooc"
-	],
-	"patterns": [
-		{
-			"include": "#comment"
-		},
-		{
-			"include": "#function"
-		},
-		{
-			"include": "#keyword"
-		},
-		{
-			"include": "#language-storage-modifier"
-		},
-		{
-			"include": "#language-storage-self-reference"
-		},
-		{
-			"include": "#builtin-function"
-		},
-		{
-			"include": "#language-constant"
-		},
-		{
-			"include": "#language-variable"
-		},
-		{
-			"include": "#literal"
-		},
-		{
-			"include": "#function-call"
-		},
-		{
-			"include": "#property"
-		},
-		{
-			"include": "#identifier"
-		}
-	],
-	"repository": {
-		"function-call": {
-			"match": "(\\w+)\\??\\s*\\("
-		},
-		"property": {
-			"patterns": [
-				{
-					"name": "keyword.other.ooc",
-					"match": "\\b(get|set)\\b"
-				}
-			]
-		},
-		"function": {
-			"patterns": [
-				{
-					"match": "([\\_a-z]+[\\w\\d\\?]*)\\s?\\:\\s?([\\w\\s\\(\\w\\)]*)(func)\\@?\\s*\\:(\\~(\\w*))?",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.ooc"
-						},
-						"2": {
-							"patterns": [
-								{
-									"include": "#keyword"
-								},
-								{
-									"include": "#language-storage-modifier"
-								},
-								{
-									"include": "#identifier"
-								}
-							]
-						},
-						"3": {
-							"patterns": [
-								{
-									"include": "#keyword"
-								}
-							]
-						},
-						"5": {
-							"name": "entity.name.function.ooc"
-						}
-					}
-				}
-			]
-		},
-		"identifier": {
-			"patterns": [
-				{
-					"name": "text.ooc",
-					"match": "\\b(\\_*[a-z]+\\w+\\d*)\\b"
-				},
-				{
-					"name": "entity.name.type.class.ooc",
-					"match": "\\b(\\_*[A-Z]+\\w*\\d*)\\b"
-				}
-			]
-		},
-		"keyword": {
-			"patterns": [
-				{
-					"include": "#keyword-declaration"
-				},
-				{
-					"include": "#keyword-operator"
-				},
-				{
-					"include": "#keyword-control"
-				},
-				{
-					"include": "#keyword-other"
-				},
-				{
-					"include": "#keyword-primitive-datatype"
-				}
-			]
-		},
-		"keyword-declaration": {
-			"name": "keyword.declaration.ooc",
-			"match": "\\b(operator|func|class|cover|enum|template|from|extend|extends|implements|__onheap__)\\b"
-		},
-		"keyword-control": {
-			"name": "keyword.control.ooc",
-			"match": "\\b(if|else|match|case|for|while|try|catch|break|continue|return)\\b"
-		},
-		"keyword-operator": {
-			"name": "keyword.operator.ooc",
-			"match": "\\b(as|is|in)\\b"
-		},
-		"keyword-other": {
-			"name": "keyword.other.ooc",
-			"match": "\\b(use|import|include|proto|into)\\b"
-		},
-		"builtin-function": {
-			"name": "support.function.builtin.ooc",
-			"match": "\\b(version|raise|throw|super)\\b\\s*\\("
-		},
-		"language-constant": {
-			"name": "constant.language.ooc",
-			"match": "\\b(true|false|null)\\b"
-		},
-		"language-variable": {
-			"name": "language.variable.ooc",
-			"match": "\\b(this)\\b"
-		},
-		"language-storage-modifier": {
-			"name": "storage.modifier.ooc",
-			"match": "\\b(static|abstract|virtual|override|unmangled|extern|final|const|inline)\\b"
-		},
-		"language-storage-self-reference": {
-			"name": "storage.type.other.ooc",
-			"match": "\\b(This)\\b"
-		},
-		"literal": {
-			"patterns": [
-				{
-					"include": "#literal-number"
-				},
-				{
-					"include": "#literal-string"
-				},
-				{
-					"include": "#literal-character"
-				}
-			]
-		},
-		"literal-number": {
-			"name": "constant.numeric.ooc",
-			"match": "(?x) (?### INTEGER ###) (?<integer-literal>                 \\g<binary-literal> |                                 \\g<octal-literal> |                                 \\g<hexadecimal-literal> |                                 \\g<decimal-literal> ){0} (?### BINARY ###) (?<binary-literal>                  0b \\g<binary-digit> \\g<binary-literal-characters>? ){0} (?<binary-digit>                    [0-1] ){0} (?<binary-literal-character>        \\g<binary-digit> |                                 _ ){0} (?<binary-literal-characters>       \\g<binary-literal-character> \\g<binary-literal-characters>? ){0} (?### OCTAL ###) (?<octal-literal>                   0c \\g<octal-digit> \\g<octal-literal-characters>? ){0} (?<octal-digit>                     [0-7] ){0} (?<octal-literal-character>         \\g<octal-digit> |                                 _ ){0} (?<octal-literal-characters>        \\g<octal-literal-character> \\g<octal-literal-characters>? ){0} (?### DECIMAL ###) (?<decimal-literal>                 \\g<decimal-digit> \\g<decimal-literal-characters>? ){0} (?<decimal-digit>                   \\d ){0} (?<decimal-literal-character>       \\g<decimal-digit> |                                 _ ){0} (?<decimal-literal-characters>      \\g<decimal-literal-character> \\g<decimal-literal-characters>? ){0} (?### HEXADECIMAL ###) (?<hexadecimal-literal>             0x \\g<hexadecimal-digit> \\g<hexadecimal-literal-characters>? ){0} (?<hexadecimal-digit>               \\h ){0} (?<hexadecimal-literal-character>   \\g<hexadecimal-digit> |                                 _ ){0} (?<hexadecimal-literal-characters>  \\g<hexadecimal-literal-character> \\g<hexadecimal-literal-characters>? ){0} (?### FLOATING POINT ###) (?<floating-point-literal>          \\g<decimal-literal>     \\g<decimal-fraction>?     \\g<decimal-exponent>? |                                 \\g<hexadecimal-literal> \\g<hexadecimal-fraction>? \\g<hexadecimal-exponent> ){0} (?<decimal-fraction>                \\. \\g<decimal-literal> ){0} (?<decimal-exponent>                \\g<floating-point-e> \\g<sign>? \\g<decimal-literal> ){0} (?<hexadecimal-fraction>            \\. \\g<hexadecimal-literal>? ){0} (?<hexadecimal-exponent>            \\g<floating-point-p> \\g<sign>? \\g<hexadecimal-literal> ){0} (?<floating-point-e>                [eE] ){0} (?<floating-point-p>                [pP] ){0} (?<sign>                            [+-] ){0} (?!0[bcx]) \\g<floating-point-literal> |            \\g<integer-literal>"
-		},
-		"literal-string": {
-			"name": "string.quoted.double.ooc",
-			"begin": "\"",
-			"end": "\"",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.begin.ooc"
-				}
-			},
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.end.ooc"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#quoted-text"
-				}
-			]
-		},
-		"literal-character": {
-			"begin": "'",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.begin.ooc"
-				}
-			},
-			"end": "'",
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.end.ooc"
-				}
-			},
-			"name": "string.quoted.single.cs",
-			"patterns": [
-				{
-					"match": "\\\\.",
-					"name": "constant.character.escape.ooc"
-				}
-			]
-		},
-		"escaped-char": {
-			"patterns": [
-				{
-					"name": "constant.character.escape.ooc",
-					"match": "\\\\[0\\\\tnr\"']"
-				},
-				{
-					"name": "constant.character.escape.ooc",
-					"match": "\\\\(x\\h{2}|u\\h{4}|U\\h{8})"
-				},
-				{
-					"name": "invalid.illegal.constant.character.escape.ooc",
-					"match": "\\\\[^uxU]"
-				}
-			]
-		},
-		"quoted-text": {
-			"patterns": [
-				{
-					"name": "meta.embedded.line.ooc",
-					"contentName": "source.ooc",
-					"begin": "\\\\\\(",
-					"end": "\\)",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.section.embedded.begin.ooc"
-						}
-					},
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.section.embedded.end.ooc"
-						}
-					},
-					"patterns": [
-						{
-							"include": "$self"
-						}
-					]
-				},
-				{
-					"include": "#escaped-char"
-				}
-			]
-		},
-		"todo": {
-			"name": "entity.name.tag.ooc",
-			"match": "\\b(TODO|FIXME)\\b"
-		},
-		"comment": {
-			"patterns": [
-				{
-					"name": "comment.block.ooc",
-					"begin": "/\\*",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.begin.ooc"
-						}
-					},
-					"end": "\\*/",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.end.ooc"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#todo"
-						}
-					]
-				},
-				{
-					"begin": "(^[ \\t]+)?(?=//)",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.whitespace.comment.leading.ooc"
-						}
-					},
-					"end": "(?!\\G)",
-					"patterns": [
-						{
-							"name": "comment.line.double-slash.ooc",
-							"begin": "//",
-							"beginCaptures": {
-								"0": {
-									"name": "punctuation.definition.comment.ooc"
-								}
-							},
-							"end": "\\n",
-							"patterns": [
-								{
-									"name": "punctuation.separator.continuation.ooc",
-									"match": "(?>\\\\\\s*\\n)"
-								},
-								{
-									"include": "#todo"
-								}
-							]
-						}
-					]
-				}
-			]
-		}
-	}
+    "scopeName": "source.ooc",
+    "name": "ooc",
+    "comment": "magic-lang ooc",
+    "fileTypes": [
+        "ooc"
+    ],
+    "repository": {
+        "todo_comment": {
+            "match": "\\b(TODO|FIXME)\\b",
+            "name": "invalid.ooc"
+        },
+        "block_comment": {
+            "comment": "Block comment",
+            "name": "comment.block.ooc",
+            "begin": "/\\*",
+            "end": "\\*/",
+            "patterns": [
+                {
+                    "include": "#block_comment"
+                },
+                {
+                    "include": "#todo_comment"
+                }
+            ]
+        },
+        "line_comment": {
+            "comment": "Single-line comment",
+            "name": "comment.line.double-slash.ooc",
+            "begin": "//",
+            "end": "$",
+            "patterns": [
+                {
+                    "include": "#todo_comment"
+                }
+            ]
+        },
+        "import": {
+            "begin": "\\b(use|import|include)\\b",
+            "end": "$",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.import.ooc"
+                }
+            }
+        },
+        "number_literal": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.float.ooc",
+                    "match": "[0-9][0-9_]*\\.([0-9][0-9_]*([eE][+-][0-9_]+)?)?f?"
+                },
+                {
+                    "name": "constant.numeric.integer.decimal.ooc",
+                    "match": "\\b[0-9][0-9_]*\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.hexadecimal.ooc",
+                    "match": "\\b0x[a-fA-F0-9_]+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.octal.ooc",
+                    "match": "\\b0c[0-7_]+\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.binary.ooc",
+                    "match": "\\b0b[01_]+\\b"
+                }
+            ]
+        },
+        "escaped_character": {
+            "name": "constant.character.escape.ooc",
+            "match": "\\\\(x\\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)"
+        },
+        "string_literal": {
+            "name": "string.quoted.double.ooc",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "include": "#escaped_character"
+                }
+            ]
+        },
+        "character_literal": {
+            "name": "string.quoted.single.ooc",
+            "begin": "'",
+            "end": "'",
+            "patterns": [
+                {
+                    "include": "#escaped_character"
+                }
+            ]
+        },
+        "language_variable_this": {
+            "name": "variable.language.ooc",
+            "match": "\\b(this)\\b"
+        },
+        "built_in_type": {
+            "name": "storage.type.ooc",
+            "match": "\\b(This)\\b"
+        },
+        "language_constants": {
+            "name": "constant.language.ooc",
+            "match": "\\b(true|false|null)\\b"
+        },
+        "keyword_control": {
+            "name": "keyword.control.ooc",
+            "match": "\\b(if|else|for|while|match|case|break|continue|return|try|catch|operator)\\b"
+        },
+        "type_name": {
+            "name": "entity.name.type.ooc",
+            "match": "\\b(_*[A-Z][a-zA-Z0-9_\\?]*)\\b"
+        },
+        "storage_modifier": {
+            "name": "storage.modifier.ooc",
+            "match": "\\b(static|abstract|virtual|override|final|extern)\\b"
+        },
+        "variable_declaration": {
+            "match": "[a-zA-Z_][a-zA-Z0-9_\\?]*\\s*(:|:=)\\s*([a-zA-Z_][a-zA-Z0-9_\\?()]+)",
+            "captures": {
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#built_in_type"
+                        },
+                        {
+                            "include": "#func_type"
+                        },
+                        {
+                            "include": "#type_name"
+                        },
+                        {
+                            "include": "#language_variables"
+                        },
+                        {
+                            "include": "#language_constants"
+                        },
+                        {
+                            "include": "#storage_modifier"
+                        },
+                        {
+                            "include": "#function_call"
+                        },
+                        {
+                            "name": "keyword.declaration.function.ooc",
+                            "match": "\\b(func)\\b"
+                        }
+                    ]
+                }
+            }
+        },
+        "type_parameters": {
+            "begin": "<",
+            "end": ">",
+            "name": "meta.type_params.ooc",
+            "patterns": [
+                {
+                    "include": "#type_name"
+                }
+            ]
+        },
+        "class_modifier": {
+            "name": "storage.modifier.ooc",
+            "match": "\\b(abstract)\\b"
+        },
+        "class_definition": {
+            "begin": "\\b([a-zA-Z_][a-zA-Z0-9_\\?]*)\\b\\s*:\\s*(.*?)\\s*(?=class)\\b(class)\\b",
+            "end": "[\\{]",
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.name.class.ooc"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#block_comment"
+                        },
+                        {
+                            "include": "#class_modifier"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "keyword.declaration.class.ooc"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#class_template"
+                },
+                {
+                    "include": "#type_parameters"
+                },
+                {
+                    "include": "#type_heritage"
+                }
+            ]
+        },
+        "class_template": {
+            "name": "keyword.other.ooc",
+            "match": "\\b(template)\\b"
+        },
+        "cover_definition": {
+            "begin": "\\b([a-zA-Z_][a-zA-Z0-9_\\?]*)\\b\\s*:\\s*\\b(cover)\\b",
+            "end": "[\\{\\n\\;]",
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.name.struct.ooc"
+                },
+                "2": {
+                    "name": "keyword.declaration.struct.ooc"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#type_parameters"
+                },
+                {
+                    "include": "#cover_from"
+                },
+                {
+                    "include": "#type_heritage"
+                }
+            ]
+        },
+        "cover_from": {
+            "begin": "\\b(from)\\b",
+            "end": "[\\{\\n\\;]",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.modifier.extends.ooc"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#type_heritage"
+                }
+            ]
+        },
+        "enum_definition": {
+            "begin": "\\b([a-zA-Z_][a-zA-Z0-9_\\?]*)\\b\\s*:\\s*\\b(enum)\\b",
+            "end": "[\\{]",
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.name.enum.ooc"
+                },
+                "2": {
+                    "name": "keyword.declaration.enum.ooc"
+                }
+            }
+        },
+        "static_type_access": {
+            "match": "\\b(_*[A-Z][a-zA-Z0-9_\\?]*)\\b\\s*\\b([a-zA-Z_][a-zA-Z0-9_\\?]*)\\b",
+            "captures": {
+                "1": {
+                    "patterns": [
+                        {
+                            "include": "#built_in_type"
+                        },
+                        {
+                            "include": "#type_name"
+                        }
+                    ]
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#function_call"
+                        }
+                    ]
+                }
+            }
+        },
+        "type_heritage": {
+            "match": "\\b(extends|implements)\\b\\s+([a-zA-Z_][a-zA-Z0-9_\\?]*)",
+            "captures": {
+                "1": {
+                    "name": "storage.modifier.extends.ooc"
+                },
+                "2": {
+                    "name": "entity.other.inherited-class.ooc"
+                }
+            }
+        },
+        "type_extend": {
+            "begin": "\\b(extend)\\b",
+            "end": "[\\{]",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.modifier.extends.ooc"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#type_name"
+                },
+                {
+                    "include": "#type_parameters"
+                }
+            ]
+        },
+        "function_definition": {
+            "begin": "([a-zA-Z_][a-zA-Z0-9_\\?]*)\\s*:\\s*(.*?)\\s*(?=func)\\b(func)\\b",
+            "end": "[\\{\\n\\;]",
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.name.function.ooc"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#block_comment"
+                        },
+                        {
+                            "include": "#storage_modifier"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "keyword.declaration.function.ooc"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#block_comment"
+                },
+                {
+                    "include": "#type_parameters"
+                },
+                {
+                    "include": "#function_suffix"
+                },
+                {
+                    "include": "#built_in_type"
+                },
+                {
+                    "include": "#variable_declaration"
+                },
+                {
+                    "include": "#language_variables"
+                },
+                {
+                    "include": "#language_constants"
+                },
+                {
+                    "include": "#static_type_access"
+                },
+                {
+                    "include": "#function_return"
+                },
+                {
+                    "include": "#function_definition"
+                }
+            ]
+        },
+        "function_suffix": {
+            "match": "~([a-zA-Z_][a-zA-Z0-9_\\?]*)",
+            "captures": {
+                "1": {
+                    "name": "entity.name.function.ooc"
+                }
+            }
+        },
+        "function_return": {
+            "match": "->\\s*([^\\{\\n]+)",
+            "captures": {
+                "1": {
+                    "patterns": [
+                        {
+                            "include": "#built_in_type"
+                        },
+                        {
+                            "include": "#type_name"
+                        }
+                    ]
+                }
+            }
+        },
+        "func_type": {
+            "match": "\\b(Func)\\b",
+            "captures": {
+                "1": {
+                    "name": "storage.type.ooc"
+                }
+            }
+        },
+        "built_in_functions": {
+            "name": "support.function.builtin.ooc",
+            "match": "\\b(raise|new|version)\\b"
+        },
+        "type_operation": {
+            "match": "\\b(as|is|in)\\b\\s+\\b([a-zA-Z_][a-zA-Z0-9_\\?]*)\\b",
+            "captures": {
+                "1": {
+                    "name": "keyword.operator.ooc"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "#type_name"
+                        }
+                    ]
+                }
+            }
+        },
+        "function_call": {
+            "begin": "([a-zA-Z_][a-zA-Z0-9_\\?]*)\\s*\\(",
+            "end": "\\)",
+            "beginCaptures": {
+                "1": {
+                    "patterns": [
+                        {
+                            "include": "#func_type"
+                        },
+                        {
+                            "include": "#built_in_functions"
+                        },
+                        {
+                            "name": "entity.name.function.ooc",
+                            "match": "([a-zA-Z_][a-zA-Z0-9_\\?]+)"
+                        }
+                    ]
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#built_in_type"
+                },
+                {
+                    "include": "#func_type"
+                },
+                {
+                    "include": "#type_name"
+                },
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "literal": {
+            "patterns": [
+                {
+                    "include": "#number_literal"
+                },
+                {
+                    "include": "#string_literal"
+                },
+                {
+                    "include": "#character_literal"
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "include": "#built_in_type"
+                }
+            ]
+        },
+        "language_variables": {
+            "patterns": [
+                {
+                    "include": "#language_variable_this"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "include": "#keyword_control"
+                }
+            ]
+        }
+    },
+    "patterns": [
+        {
+            "include": "#block_comment"
+        },
+        {
+            "include": "#line_comment"
+        },
+        {
+            "include": "#import"
+        },
+        {
+            "include": "#literal"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#language_variables"
+        },
+        {
+            "include": "#language_constants"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#class_definition"
+        },
+        {
+            "include": "#cover_definition"
+        },
+        {
+            "include": "#enum_definition"
+        },
+        {
+            "include": "#operator_definition"
+        },
+        {
+            "include": "#type_extend"
+        },
+        {
+            "include": "#function_definition"
+        },
+        {
+            "include": "#type_operation"
+        },
+        {
+            "include": "#variable_declaration"
+        },
+        {
+            "include": "#static_type_access"
+        },
+        {
+            "include": "#function_call"
+        }
+    ]
 }
