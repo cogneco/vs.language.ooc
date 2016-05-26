@@ -7,7 +7,7 @@ Adds ooc support to Visual Studio Code
 ## Install on Linux
 Open up a terminal, then follow the steps outlined below.
 * ```cd``` into the directory where you would like this repo to be created.
-* ```git clone https://github.com/cogneco/vs.language.ooc```
+* ```git clone https://github.com/magic-lang/vs.language.ooc```
 
 Now that you have cloned the repo, we need to tell VS Code that it exists. A good way of doing this is
 to create a symbolic link. This way, whenever ```vs.language.ooc``` is updated, VS Code will automatically
